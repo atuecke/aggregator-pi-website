@@ -24,7 +24,7 @@ jobs:
       - run: npm run build      # builds your React app
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist            # Vite uses dist/ (CRA: change to build/)
+          path: build            # Vite uses dist/ (CRA: change to build/)
   deploy:
     needs: build
     runs-on: ubuntu-latest
