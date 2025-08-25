@@ -5,16 +5,17 @@ import architecture from "./architecture.jpeg";
 import both from "./both.jpg";
 import analyze from "./analyze.jpg";
 import upload from "./upload.jpg";
+import jobs from "./jobs.jpg";
 
 function GlobalStyles() {
   return (
     <style>{`
-      :root { --page-pad: 1in; --gap: 1.5rem; }
-      @media (max-width: 900px) { :root { --page-pad: 20px; --gap: 1rem; } }
+      :root { --page-pad: 1in; --gap: 1.5rem; --nav-height: 60px; }
+      @media (max-width: 900px) { :root { --page-pad: 20px; --gap: 1rem; --nav-height: 70px; } }
 
       /* Layout helpers */
       .page { min-height: 100vh; background:#000; color:#fff; }
-      .main { padding: var(--page-pad); margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, sans-serif; }
+      .main { padding: var(--page-pad); margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, sans-serif; padding-top: calc(var(--nav-height) + var(--page-pad)); }
       .two-col { display:grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-items: start; }
       @media (max-width: 900px){ .two-col { grid-template-columns: 1fr; } }
 
@@ -33,25 +34,90 @@ function GlobalStyles() {
       .para, .list { font-size: clamp(16px, 1.6vw, 20px); line-height: 1.7; }
       .list { padding-left: 1.2rem; margin-top: .5rem; }
 
-      /* Tabs */
-      .tabs { position:fixed; top:12px; right:12px; display:flex; gap:10px; z-index:50; }
-      .tab { padding: 8px 14px; background: transparent; color:#fff; border: 1px solid #ffffff55; border-radius: 999px; cursor:pointer; font-size: 14px; }
-      .tab.active { border-color:#90EE90; color:#90EE90; }
-      @media (max-width: 480px){ .tabs { left:12px; right:auto; flex-wrap:wrap; gap:8px; } .tab { padding:6px 10px; font-size: 13px; } }
+      /* Fixed Navigation Strip */
+      .nav-strip { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        right: 0; 
+        height: var(--nav-height);
+        background: #000; 
+        border-bottom: 1px solid #333;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      }
+      
+      .tabs { 
+        display: flex; 
+        gap: 10px; 
+        align-items: center;
+      }
+      
+      .tab { 
+        padding: 8px 16px; 
+        background: transparent; 
+        color: #fff; 
+        border: 1px solid #ffffff55; 
+        border-radius: 999px; 
+        cursor: pointer; 
+        font-size: 14px;
+        transition: all 0.2s ease;
+      }
+      
+      .tab:hover {
+        border-color: #ffffff88;
+        background: #ffffff11;
+      }
+      
+      .tab.active { 
+        border-color: #90EE90; 
+        color: #90EE90; 
+        background: #90EE9011;
+      }
+      
+      @media (max-width: 480px) { 
+        .nav-strip { 
+          justify-content: flex-start; 
+          padding: 0 12px; 
+        }
+        .tabs { 
+          flex-wrap: wrap; 
+          gap: 8px; 
+          width: 100%;
+        } 
+        .tab { 
+          padding: 6px 12px; 
+          font-size: 13px; 
+        } 
+      }
 
       /* Images */
       .arch-img { max-height: 70vh; object-fit: contain; }
+
+      /* Wave positioning adjustment for fixed nav */
+      .wave-container {
+        margin-top: calc(-2rem - var(--nav-height));
+        margin-left: calc(-1 * var(--page-pad));
+        margin-right: calc(-1 * var(--page-pad));
+        padding-top: var(--nav-height);
+        overflow: hidden;
+      }
     `}</style>
   );
 }
 
 function Tabs({ view, setView }) {
   return (
-    <div className="tabs">
-      <button onClick={() => setView("home")} className={`tab ${view === "home" ? "active" : ""}`} aria-label="Go to Home">Home</button>
-      <button onClick={() => setView("approach")} className={`tab ${view === "approach" ? "active" : ""}`} aria-label="Go to Approach">Approach</button>
-      <button onClick={() => setView("results")} className={`tab ${view === "results" ? "active" : ""}`} aria-label="Go to Results">Results</button>
-      <button onClick={() => setView("team")} className={`tab ${view === "team" ? "active" : ""}`} aria-label="Go to Team">Team</button>
+    <div className="nav-strip">
+      <div className="tabs">
+        <button onClick={() => setView("home")} className={`tab ${view === "home" ? "active" : ""}`} aria-label="Go to Home">Home</button>
+        <button onClick={() => setView("approach")} className={`tab ${view === "approach" ? "active" : ""}`} aria-label="Go to Approach">Approach</button>
+        <button onClick={() => setView("results")} className={`tab ${view === "results" ? "active" : ""}`} aria-label="Go to Results">Results</button>
+        <button onClick={() => setView("team")} className={`tab ${view === "team" ? "active" : ""}`} aria-label="Go to Team">Team</button>
+      </div>
     </div>
   );
 }
@@ -66,8 +132,8 @@ export default function Page() {
         <GlobalStyles />
         <Tabs view={view} setView={setView} />
         <main className="main" style={{ maxWidth: 1400, marginInline: "auto" }}>
-          <div style={{ marginTop: "-2rem", marginLeft: "-10rem" }}>
-            <img src={wave} alt="Wave design divider" style={{ width: "110%", height: 80, objectFit: "cover" }} />
+          <div className="wave-container">
+            <img src={wave} alt="Wave design divider" style={{ width: "100%", height: 80, objectFit: "cover" }} />
           </div>
 
           <h1 className="heading h1" style={{ marginTop: "1.25rem" }}>Approach</h1>
@@ -125,7 +191,7 @@ export default function Page() {
         <GlobalStyles />
         <Tabs view={view} setView={setView} />
         <main className="main">
-          <div style={{ marginTop: "-2rem", marginLeft: "-10rem" }}>
+          <div className="wave-container">
             <img src={wave} alt="Wave design divider" style={{ width: "110%", height: 80, objectFit: "cover" }} />
           </div>
           <h1 className="heading h1" style={{ marginTop: "1.25rem" }}>Results</h1>
@@ -140,11 +206,56 @@ export default function Page() {
               <li>Manual effort saved: No manual data retrieval, no expert maintenance, hugely reduces overall cost because experts do not have to spend months on location tending to devices.</li>
             </ul>
           </section>
-          <div className="gallery" style={{ marginTop: "1.25rem" }}>
-            <img src={both} alt="both" className="img-round" />
-            <img src={analyze} alt="analyze" className="img-round" />
-            <img src={upload} alt="upload" className="img-round" />
-          </div>
+          <section style={{ marginTop: "1.25rem" }}>
+            <h2 className="h2">Aggregator Testing</h2>
+            <ul className="list">
+              <li>TWe tested simulated Listeners with the Raspberry Pi Aggregator to benchmark Aggregator 
+              performance as measured by CPU utilization and Redis Job Queue Depth. </li>
+              <li>Three simulated scenarios were tested: 1, 15, and 25 Listener streams. </li>
+              <li> For each number of simulated Listeners, we test the Uploader and Analyser simultaneously, 
+              the Uploader alone, and the Analyser alone, 
+              each for 10 minutes, with readings captured every 5 seconds.</li>
+            </ul>
+          </section>
+          <section className="two-col" style={{ marginTop: "1.25rem" }}>
+            <div>
+              <section style={{ marginTop: "1.25rem" }}>
+                <h2 className="h2">CPU Utilization</h2>
+                <ul className="list">
+                  <li>The average CPU utilization for 1, 15 and 25 simulated listeners in the simultaneous upload and analyze task 
+                  was 3.5%, 45.1% and 81.0%, respectively </li>
+                  <li>For analyze alone, the average CPU utilization was 2.9%, 41.7%, and 69.9%, respectively </li>
+                  <li>For upload alone, the average CPU utilization was 1.3%, 9.2%, and 13.9%, respectively </li>
+                </ul>
+              </section>
+            </div>
+            <div>
+              <img src={both} alt="both" className="img-round" />
+            </div>
+          </section>
+          <section className="two-col" style={{ marginTop: "1.25rem" }}>
+            <div>
+              <img src={analyze} alt="analyze" className="img-round" />
+            </div>
+            <div>
+              <img src={upload} alt="upload" className="img-round" />
+            </div>
+          </section>
+          <section className="two-col" style={{ marginTop: "1.25rem" }}>
+            <div>
+              <section style={{ marginTop: "1.25rem" }}>
+                <h2 className="h2">Redis Job Queue Depth</h2>
+                <ul className="list">
+                  <li>The average job queue depth for 1, 15 and 25 simulated listeners in the upload task 
+                  was 1, 15.6, and 25.8, respectively </li>
+                  <li>For the analyze task, the average job queue depth was 1, 15.6, and 25.7, respectively </li>
+                </ul>
+              </section>
+            </div>
+            <div>
+              <img src={jobs} alt="both" className="img-round" />
+            </div>
+          </section>
         </main>
       </div>
     );
@@ -157,7 +268,7 @@ export default function Page() {
         <GlobalStyles />
         <Tabs view={view} setView={setView} />
         <main className="main">
-          <div style={{ marginTop: "-2rem", marginLeft: "-10rem" }}>
+          <div className="wave-container">
             <img src={wave} alt="Wave design divider" style={{ width: "110%", height: 80, objectFit: "cover" }} />
           </div>
           <h1 className="heading h1" style={{ marginTop: "1.25rem" }}>Team</h1>
@@ -199,7 +310,7 @@ export default function Page() {
           <section style={{ marginTop: "1.25rem" }}>
             <h2 className="h2">Current technology: Not real-time, limited scalability</h2>
             <ul className="list">
-              <li>Existing recorders are not real-time, don’t communicate status, and are expensive.</li>
+              <li>Existing recorders are not real-time, don't communicate status, and are expensive.</li>
               <li>Experts are required to manually retrieve data by opening up each sensor.</li>
               <li>This cost and effort greatly limits scalability, with about 5% of recordings lost.</li>
             </ul>
