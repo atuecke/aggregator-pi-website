@@ -273,11 +273,18 @@ export default function Page() {
           </div>
           <h1 className="heading h1" style={{ marginTop: "1.25rem" }}>Team</h1>
           <ul className="list" style={{ marginTop: "1.25rem" }}>
-            <li><strong>Hudson Reynolds</strong> — Student Researcher, Boston University</li>
-            <li><strong>Alex Tuecke</strong> — Student Researcher, Worcester Polytechnic Institute (WPI)</li>
+            <li><strong>Hudson Reynolds</strong> — Student Researcher, Boston University, Computer Engineering, Class of 2025</li>
+            <li><strong>Alex Tuecke</strong> — Student Researcher, Worcester Polytechnic Institute (WPI), Computer Science, Robotics, Class of 2028</li>
             <li><strong>Mike Sherman</strong> — Advisor, University of Chicago</li>
             <li><strong>Kate Keahey</strong> — Advisor, University of Chicago / Argonne National Laboratory</li>
           </ul>
+
+          <section style={{ marginTop: "2rem" }}>
+            <h2 className="h2">Acknowledgements</h2>
+            <p className="para" style={{ marginTop: ".5rem" }}>
+              This work is supported in part by the National Science Foundation OAC-2150500 award.
+            </p>
+          </section>
         </main>
       </div>
     );
