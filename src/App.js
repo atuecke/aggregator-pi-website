@@ -272,12 +272,42 @@ export default function Page() {
             <img src={wave} alt="Wave design divider" style={{ width: "110%", height: 80, objectFit: "cover" }} />
           </div>
           <h1 className="heading h1" style={{ marginTop: "1.25rem" }}>Team</h1>
-          <ul className="list" style={{ marginTop: "1.25rem" }}>
-            <li><strong>Hudson Reynolds</strong> — Student Researcher, Boston University, Computer Engineering, Class of 2025</li>
-            <li><strong>Alex Tuecke</strong> — Student Researcher, Worcester Polytechnic Institute (WPI), Computer Science, Robotics, Class of 2028</li>
-            <li><strong>Mike Sherman</strong> — Advisor, University of Chicago</li>
-            <li><strong>Kate Keahey</strong> — Advisor, University of Chicago / Argonne National Laboratory</li>
-          </ul>
+
+          <section style={{ marginTop: "1.25rem" }}>
+            <h3 className="h3">Hudson Reynolds</h3>
+            <p className="para" style={{ marginTop: ".25rem", marginBottom: ".25rem" }}>
+              Student Researcher, Boston University<br />
+              Computer Engineering, Class of 2025
+            </p>
+            <p className="para" style={{ fontSize: "clamp(14px, 1.4vw, 18px)" }}>
+              Email: hudsonre@bu.edu | {" "}
+              <a href="https://github.com/HudsonReynolds2" target="_blank" rel="noopener noreferrer" style={{ color: "#90EE90", textDecoration: "none" }}>GitHub</a>
+              {" | "}
+              <a href="https://www.linkedin.com/in/hudson-m-reynolds/" target="_blank" rel="noopener noreferrer" style={{ color: "#90EE90", textDecoration: "none" }}>LinkedIn</a>
+            </p>
+          </section>
+
+          <section style={{ marginTop: "1.25rem" }}>
+            <h3 className="h3">Alex Tuecke</h3>
+            <p className="para" style={{ marginTop: ".25rem", marginBottom: ".25rem" }}>
+              Student Researcher, Worcester Polytechnic Institute (WPI)<br />
+              Computer Science, Robotics, Class of 2028
+            </p>
+            <p className="para" style={{ fontSize: "clamp(14px, 1.4vw, 18px)" }}>
+              Email: ahtuecke@wpi.edu | {" "}
+              <a href="https://github.com/atuecke" target="_blank" rel="noopener noreferrer" style={{ color: "#90EE90", textDecoration: "none" }}>GitHub</a>
+              {" | "}
+              <a href="https://www.linkedin.com/in/alex-tuecke-06ab6b291/" target="_blank" rel="noopener noreferrer" style={{ color: "#90EE90", textDecoration: "none" }}>LinkedIn</a>
+            </p>
+          </section>
+
+          <section style={{ marginTop: "1.75rem" }}>
+            <h2 className="h2">Advisors</h2>
+            <ul className="list" style={{ marginTop: ".5rem" }}>
+              <li><strong>Mike Sherman</strong> — University of Chicago</li>
+              <li><strong>Kate Keahey</strong> — University of Chicago / Argonne National Laboratory</li>
+            </ul>
+          </section>
 
           <section style={{ marginTop: "2rem" }}>
             <h2 className="h2">Acknowledgements</h2>
